@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from "react-native"
+import { View, Text, TouchableOpacity, ScrollView } from "react-native"
 import RNPickerSelect from 'react-native-picker-select';
 import SelectButton from './_components/SelectButton';
+import { MOVIE_GENRES } from '../../_constants/movieGenres';
+import FormInput from '../_components/form/Input';
 
 export default function Signup() {
   const [age, setAge] = useState<number | null>(null);
@@ -18,37 +20,24 @@ export default function Signup() {
     <View className="flex-1 w-full mx-auto bg-primary p-6 h-[600px] rounded-xl">
       <Text className="text-2xl font-bold mb-8 text-white">ぴったりの映画を見つけよう🍿</Text>
 
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View className="mb-6">
-          <View className="mb-4">
-            <Text className="text-sm text-white mb-2">Name</Text>
-            <TextInput
-              className="bg-secondary border-0 text-white p-3 rounded-xl"
-              placeholder="Your name"
-              placeholderTextColor="#94a6c7"
-            />
-          </View>
+          <FormInput 
+            label='Name'
+            placeholder='your name'
+            secureTextEntry={false}
+          />
+          <FormInput 
+            label='Email'
+            placeholder='your@email.com'
+            secureTextEntry={false}
+          />
 
-          <View className="mb-4">
-            <Text className="text-sm text-white mb-2">Email</Text>
-            <TextInput
-              className="bg-secondary border-0 text-white p-3 rounded-xl"
-              placeholder="your@email.com"
-              placeholderTextColor="#94a6c7"
-            />
-          </View>
-
-          <View className="mb-4">
-            <Text className="text-sm text-white mb-2">Password</Text>
-            <TextInput
-              className="bg-secondary border-0 text-white p-3 rounded-xl"
-              placeholder="••••••••"
-              placeholderTextColor="#94a6c7"
-              secureTextEntry
-            />
-          </View>
+          <FormInput 
+            label='Password'
+            placeholder='••••••••'
+            secureTextEntry={true}
+          />
         </View>
 
         <View className="mb-6">
@@ -64,7 +53,7 @@ export default function Signup() {
           </View>
         </View>
 
-        <View className="mb-4">
+        <View className="mb-6">
           <Text className="text-sm text-white mb-2">Age</Text>
           <RNPickerSelect
             onValueChange={(value) => setAge(value)}
@@ -74,14 +63,14 @@ export default function Signup() {
             useNativeAndroidPickerStyle={false}
             style={{
               inputIOS: {
-                backgroundColor: '#2a2e43',
+                backgroundColor: '#253546',
                 paddingVertical: 12,
                 paddingHorizontal: 16,
                 borderRadius: 12, // TextInputの角丸に合わせて調整
                 color: 'white',
               },
               inputAndroid: {
-                backgroundColor: '#2a2e43',
+                backgroundColor: '#253546',
                 paddingVertical: 12,
                 paddingHorizontal: 16,
                 borderRadius: 12, // TextInputの角丸に合わせて調整
@@ -101,20 +90,15 @@ export default function Signup() {
         </View>
 
         <View className="mb-6">
-          <Text className="text-sm font-semibold mb-3 text-white">Favorite Movie Genres</Text>
+          <Text className="text-sm mb-3 text-white">Favorite Movie Genres</Text>
           <View className="flex-row flex-wrap justify-between">
-            {[
-              { name: "Action", image: "https://via.placeholder.com/60x80" },
-              { name: "Comedy", image: "https://via.placeholder.com/60x80" },
-              { name: "Drama", image: "https://via.placeholder.com/60x80" },
-              { name: "Sci-Fi", image: "https://via.placeholder.com/60x80" },
-              { name: "Horror", image: "https://via.placeholder.com/60x80" },
-              { name: "Thriller", image: "https://via.placeholder.com/60x80" },
-            ].map((genre) => (
-              <View key={genre.name} className="w-[48%] mb-3 items-center">
-                <Image source={{ uri: genre.image }} className="w-full h-20 rounded-xl mb-2" resizeMode="cover" />
-                <Text className="text-xs text-white">{genre.name}</Text>
-              </View>
+            {MOVIE_GENRES.map((genre) => (
+              <TouchableOpacity key={genre.id} className="w-[48%] mb-3 items-center">
+                <View className="w-full h-20 rounded-xl mb-2 bg-secondary justify-center items-center">
+                  <Text className="text-4xl">{genre.icon}</Text>
+                </View>
+                <Text className="text-xs text-white">{genre.name_ja}</Text>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
