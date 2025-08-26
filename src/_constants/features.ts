@@ -1,7 +1,7 @@
 import { Zap, Heart, Clock } from 'lucide-react-native'
 import { featureType } from '../_types/welcome/featureType'
 
-export const features: featureType[] = [
+export const FEATURES: featureType[] = [
   {
     icon: Zap,
     title: '3ステップで見つかる',
