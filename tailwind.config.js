@@ -33,12 +33,12 @@ module.exports = {
         blue: "#304d69",
         navy: "#21364a",
       },
-      borderRadius: {
-        sm: "calc(0.625rem - 4px)",
-        md: "calc(0.625rem - 2px)",
-        lg: "0.625rem",
-        xl: "calc(0.625rem + 4px)",
-      },
+      // borderRadius: {
+      //   sm: "calc(0.625rem - 4px)",
+      //   md: "calc(0.625rem - 2px)",
+      //   lg: "0.625rem",
+      //   xl: "calc(0.625rem + 4px)",
+      // },
     },
   },
   plugins: [],

@@ -1,9 +1,9 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity } from "react-native"
-import { Zap, Heart, Clock } from 'lucide-react-native'
 import { router } from 'expo-router'
-import Header from './_component/Header'
-
+import { features } from '../_constants/features'
+import Header from './_components/Header'
+import FeatureItem from './_components/welcome/FeatureItem'
 
 export default function Index() {
   return (
@@ -47,57 +47,18 @@ export default function Index() {
       </View>
 
       {/* Description Section */}
-    <View className="bg-[#0a2342] px-6 py-12">
-      <Text className="text-white text-2xl font-bold mb-8">Movimo Features</Text>
-
-      {/* Feature 1 */}
-      <View className="flex-row items-start mb-6">
-        <View className="bg-white rounded-2xl p-4 w-16 h-16 flex items-center justify-center mr-4">
-          <Heart size={32} color="#4b5563" /> 
-        </View>
-        <View className="flex-1">
-          <Text className="text-accent text-lg font-semibold mb-2">
-            Find movies in 3 taps
-          </Text>
-          <Text className="text-white/80 text-sm leading-relaxed">
-            Select your mood, situation, and company, and Movimo will find the
-            perfect movie for you.
-          </Text>
-        </View>
+      <View className="bg-primary px-6 py-12">
+        <Text className="text-white text-2xl font-bold mb-8">Movimo Features</Text>
+          {features.map((feature, index) => {
+            return(
+              <FeatureItem 
+                feature={feature}
+                index={index}
+                key={index}
+              />
+            )
+          })}
       </View>
-
-      {/* Feature 2 */}
-      <View className="flex-row items-start mb-6">
-        <View className="bg-white rounded-2xl p-4 w-16 h-16 flex items-center justify-center mr-4">
-          <Zap size={32} color="#253546" />
-        </View>
-        <View className="flex-1">
-          <Text className="text-accent text-lg font-semibold mb-2">
-            Top 3 suggestions
-          </Text>
-          <Text className="text-white/80 text-sm leading-relaxed">
-            Movimo presents only the top 3 movie choices, so you can quickly
-            decide what to watch.
-          </Text>
-        </View>
-      </View>
-
-      {/* Feature 3 */}
-      <View className="flex-row items-start">
-        <View className="bg-accent rounded-2xl p-4 w-16 h-16 flex items-center justify-center mr-4">
-          <Clock size={32} color="#0a2342" />
-        </View>
-        <View className="flex-1">
-          <Text className="text-[#ff8533] text-lg font-semibold mb-2">
-            Recommendations with
-          </Text>
-          <Text className="text-white/80 text-sm leading-relaxed">
-            Movimo displays the rationale behind each suggestion with tags like
-            90min, family-friendly, and perfect for weeknights.
-          </Text>
-        </View>
-      </View>
-    </View>
     </ScrollView>
   )
 }
