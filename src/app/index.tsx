@@ -36,7 +36,7 @@ export default function Index() {
           </Text>
 
           <TouchableOpacity 
-            className="bg-primary px-8 py-3 rounded-lg"
+            className="bg-primary px-8 py-3 rounded-xl"
             onPress={() => router.push('auth/signup')}
           >
             <Text className="text-white font-medium text-base">

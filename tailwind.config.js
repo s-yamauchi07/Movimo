@@ -32,6 +32,7 @@ module.exports = {
         dark: "#121721",
         blue: "#304d69",
         navy: "#21364a",
+        grayBlue: "#94a6c7",
       },
       // borderRadius: {
       //   sm: "calc(0.625rem - 4px)",
