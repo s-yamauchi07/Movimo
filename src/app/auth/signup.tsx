@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from "react-native"
+import RNPickerSelect from 'react-native-picker-select';
 
 export default function Signup() {
+  const [age, setAge] = useState<number | null>(null);
+
+  const ageOptions = Array.from({ length: 100 }, (_, i) => ({
+    label: `${i + 1}`,
+    value: i + 1,
+  }));
+
   return (
     <View className="flex-1 w-full mx-auto bg-primary p-6 h-[600px] rounded-xl">
       <Text className="text-2xl font-bold mb-8 text-white">ぴったりの映画を見つけよう🍿</Text>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        
+      >
         <View className="mb-6">
           <View className="mb-4">
             <Text className="text-sm text-white mb-2">Name</Text>
@@ -49,15 +60,42 @@ export default function Signup() {
               <Text className="text-white text-sm">Other</Text>
             </TouchableOpacity>
           </View>
+        </View>
 
-          <View>
-            <Text className="text-sm text-white mb-2">Age</Text>
-            <TextInput
-              className="bg-secondary border-0 text-white p-3 rounded-xl"
-              placeholder="25"
-              placeholderTextColor="#94a6c7"
-            />
-          </View>
+        <View className="mb-4">
+          <Text className="text-sm text-white mb-2">Age</Text>
+          <RNPickerSelect
+            onValueChange={(value) => setAge(value)}
+            placeholder={{ label: 'Select age', value: null }}
+            items={ageOptions}
+            value={age}
+            useNativeAndroidPickerStyle={false}
+            style={{
+              inputIOS: {
+                backgroundColor: '#2a2e43',
+                paddingVertical: 12,
+                paddingHorizontal: 16,
+                borderRadius: 12, // TextInputの角丸に合わせて調整
+                color: 'white',
+              },
+              inputAndroid: {
+                backgroundColor: '#2a2e43',
+                paddingVertical: 12,
+                paddingHorizontal: 16,
+                borderRadius: 12, // TextInputの角丸に合わせて調整
+                color: 'white',
+              },
+              placeholder: { color: '#94a6c7' },
+              iconContainer: {
+                top: '50%',
+                right: 15,
+                transform: [{ translateY: -8 }], // アイコンを垂直方向の中央に配置
+              },
+            }}
+            Icon={() => (
+              <Text style={{ color: 'white', fontSize: 16 }}>▼</Text>
+            )}
+          />
         </View>
 
         <View className="mb-6">
