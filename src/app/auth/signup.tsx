@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from "react-native"
 import RNPickerSelect from 'react-native-picker-select';
+import SelectButton from './_components/SelectButton';
 
 export default function Signup() {
   const [age, setAge] = useState<number | null>(null);
+  const [gender, setGender] = useState(null)
 
   const ageOptions = Array.from({ length: 100 }, (_, i) => ({
     label: `${i + 1}`,
     value: i + 1,
   }));
+
+  const genderOptions = ['man', 'woman', 'other']
 
   return (
     <View className="flex-1 w-full mx-auto bg-primary p-6 h-[600px] rounded-xl">
@@ -16,7 +20,6 @@ export default function Signup() {
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        
       >
         <View className="mb-6">
           <View className="mb-4">
@@ -49,16 +52,15 @@ export default function Signup() {
         </View>
 
         <View className="mb-6">
-          <View className="flex-row gap-2 mb-4">
-            <TouchableOpacity className="bg-secondary px-4 py-2 rounded-xl">
-              <Text className="text-white text-sm">New</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="bg-secondary px-4 py-2 rounded-xl">
-              <Text className="text-white text-sm">Popular</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="bg-secondary px-4 py-2 rounded-xl">
-              <Text className="text-white text-sm">Other</Text>
-            </TouchableOpacity>
+          <View className="flex-row mb-4">
+            {genderOptions.map((label, index) => (
+              <SelectButton 
+                selectedGender={gender}
+                genderLabel={label}
+                setGender={setGender}
+                key={index}
+              />
+            ))}
           </View>
         </View>
 
