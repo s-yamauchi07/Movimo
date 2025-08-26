@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity } from "react-native"
 import { router } from 'expo-router'
-import { features } from '../_constants/features'
+import { FEATURES } from '../_constants/features'
 import Header from './_components/Header'
 import FeatureItem from './_components/welcome/FeatureItem'
 
@@ -49,7 +49,7 @@ export default function Index() {
       {/* Description Section */}
       <View className="bg-primary px-6 py-12">
         <Text className="text-white text-2xl font-bold mb-8">Movimo Features</Text>
-          {features.map((feature, index) => {
+          {FEATURES.map((feature, index) => {
             return(
               <FeatureItem 
                 feature={feature}
